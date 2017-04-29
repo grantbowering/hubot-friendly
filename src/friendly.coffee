@@ -22,9 +22,9 @@ module.exports = (robot) ->
 
   robot.hear ///
             #^                   # this should be the start of the message
-            (have\x20a\x20)?    # they could say "have a" at the start
-            goo+d               # the word 'good', with as many o's as needed
-            \x20                # a space 
+            (have\x20a\x20)?     # they could say "have a" at the start
+            goo+d                # the word 'good', with as many o's as needed
+            \x20*                # a space, maybe
             (morn(ing)?|morrow|afternoon|evening|day|night) # the time they said, captured as [2]
             ///i, (msg) ->
     msg.send "Good #{msg.match[2]}, @#{msg.message.user.name}!"

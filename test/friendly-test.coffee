@@ -50,3 +50,17 @@ describe 'friendly', ->
         ['alice', 'say hello to @mary, hubot!']
         ['hubot', 'hello to @mary, hubot! :trollface:']
       ]
+      
+  it 'should say good night', ->
+    @room.user.say('alice', 'good night, everyone!').then =>
+      expect(@room.messages).to.eql [
+        ['alice', 'good night, everyone!']
+        ['hubot', 'Good night, @alice!']
+      ]
+      
+  it 'should say goodnight if no space', ->
+    @room.user.say('alice', 'goodnight folks').then =>
+      expect(@room.messages).to.eql [
+        ['alice', 'goodnight folks']
+        ['hubot', 'Good night, @alice!']
+      ]
