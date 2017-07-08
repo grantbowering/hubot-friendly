@@ -11,7 +11,7 @@
 module.exports = (robot) ->
 
   robot.hear ///
-            #^                       # this should be the start of the message
+            ^                       # this should be the start of the message
             (hey|hi|hello|(wh?at)?'?s'?up\??|greetings) # greeting word possibilities
             [\x20@]*                # optional space or @
             (every(one|body)|guys|people|ppl|folks|friends|channel|#{robot.name})? # optional targeting of everyone or the robot
@@ -21,7 +21,7 @@ module.exports = (robot) ->
     msg.send "Hi @#{msg.message.user.name}!"
 
   robot.hear ///
-            #^                   # this should be the start of the message
+            ^                    # this should be the start of the message
             (have\x20a\x20)?     # they could say "have a" at the start
             goo+d                # the word 'good', with as many o's as needed
             \x20*                # a space, maybe
@@ -30,6 +30,7 @@ module.exports = (robot) ->
     msg.send "Good #{msg.match[2]}, @#{msg.message.user.name}!"
 
   robot.hear ///
+            ^                   # this should be the start of the message
             say                 # the word 'say'
             \x20                # a space
             ((hi|hello)(\x20to\x20@?\w+)?,?)      # either hi or hello, with an optional comma, captured as [1]
